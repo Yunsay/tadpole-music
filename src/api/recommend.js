@@ -33,7 +33,6 @@ export function getDiscList() {
     return Promise.resolve(res.data)
   })
 }
-http://htmlpreview.github.io/Yunsay/tadpole-music
 export function getSongList(disstid) {
   // debug ? '/api/getSongList' : 'http://127.0.0.1:8020/tadpole-music/api/getSongList'
   const url = '/api/getSongList'
