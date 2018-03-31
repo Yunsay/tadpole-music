@@ -13,8 +13,7 @@ export function getRecommend() {
 }
 const debug = process.env.NODE_ENV !== 'production'
 export function getDiscList() {
-  // debug ? '/api/getDiscList' : 'http://127.0.0.1:8020/tadpole-music/api/getDiscList'
-  const url = debug ? '/api/getDiscList' : 'http://localhost:9000/tadpole-music/api/getDiscList'
+  const url = debug ? '/api/getDiscList' : 'https://yunsay.github.io/tadpole-music/api/getDiscList'
   const data = Object.assign({}, commonParams, {
     platform: 'yqq',
     hostUin: 0,
@@ -34,8 +33,7 @@ export function getDiscList() {
   })
 }
 export function getSongList(disstid) {
-  // debug ? '/api/getSongList' : 'http://127.0.0.1:8020/tadpole-music/api/getSongList'
-  const url = '/api/getSongList'
+  const url = debug ? '/api/getSongList' : 'https://yunsay.github.io/tadpole-music/api/getSongList'
   const data = Object.assign({}, commonParams, {
     disstid,
     type: 1,
