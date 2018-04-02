@@ -1,9 +1,9 @@
-﻿{
+{
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H52DC9325",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "蝌蚪音乐",/*应用名称，程序桌面图标名称*/
     "version": {
-        "name": "1.1.18.3.30",/*应用版本名称*/
+        "name": "1.1.18.4.02",/*应用版本名称*/
         "code": ""
     },
     "description": "蝌蚪音乐记录你生活中的点点滴滴。",/*应用描述信息*/
@@ -127,7 +127,7 @@
                     "xxhdpi": ""/*1080P高分屏启动图片，分辨率：1080x1882*/
                 }
             }
-        }
+        },"ads":{"rp":false,"splash":false,"push":false},"adid":""
     },
 	"dependencies":{
 		"pages": {
