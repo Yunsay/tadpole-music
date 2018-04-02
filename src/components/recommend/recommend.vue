@@ -20,9 +20,13 @@
             <li @click="selectItem(item)" v-for="item in discList" class="item">
               <div class="icon">
                 <img width="60" height="60" v-lazy="item.imgurl">
+                <i class="icon-music"></i>
+                <div class="music-play">
+                  <span class="playback" v-html="item.listennum > 9999 ? (Math.floor(item.listennum/1000)/10) + '万' : item.listennum"></span>
+                </div>
               </div>
               <div class="text">
-                <h2 class="name" v-html="item.creator.name"></h2>
+                <h2 class="name" v-html="item.author"></h2>
                 <p class="desc" v-html="item.dissname"></p>
               </div>
             </li>
@@ -45,7 +49,6 @@ import {getRecommend, getDiscList} from 'api/recommend'
 import {playlistMixin} from 'common/js/mixin'
 import {ERR_OK} from 'api/config'
 import {mapMutations} from 'vuex'
-
 export default {
   mixins: [playlistMixin],
   data() {
@@ -58,11 +61,6 @@ export default {
     this._getRecommend()
     this._getDiscList()
   },
-  // activated() {
-  //   setTimeout(() => {
-  //     this.$refs.slider && this.$refs.slider.refresh()
-  //   }, 20)
-  // },
   methods: {
     handlePlaylist(playlist) {
       const bottom = playlist.length > 0 ? '60px' : ''
@@ -94,7 +92,7 @@ export default {
     _getDiscList() {
       getDiscList().then((res) => {
         if (res.code === ERR_OK) {
-          this.discList = res.data.list
+          this.discList = res.data.hotdiss.list
         }
       })
     },
@@ -149,6 +147,24 @@ export default {
             flex: 0 0 60px
             width: 60px
             padding-right: 20px
+            position relative
+            .icon-music
+              position absolute
+              bottom:6px
+              left :3px
+              font-size: 10px
+              color: $color-white
+              opacity:.6
+            .music-play
+              position absolute
+              bottom:1px
+              left :16px
+              width:45px
+              height:20px
+              text-align center
+              .playback
+                font-size: 9px
+                color: $color-dialog-background
           .text
             display: flex
             flex-direction: column

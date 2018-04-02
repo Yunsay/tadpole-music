@@ -11,46 +11,49 @@ export function getRecommend() {
   })
   return jsonp(url, data, options)
 }
-const debug = process.env.NODE_ENV !== 'production'
-export function getDiscList() {
-  const url = debug ? '/api/getDiscList' : 'https://yunsay.github.io/tadpole-music/api/getDiscList'
-  const data = Object.assign({}, commonParams, {
-    platform: 'yqq',
-    hostUin: 0,
-    sin: 0,
-    ein: 29,
-    sortId: 5,
-    needNewCode: 0,
-    categoryId: 10000000,
-    rnd: Math.random(),
-    format: 'json'
-  })
-  // return jsonp(url, data, options)
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
-    return Promise.resolve(res.data)
-  })
-}
-export function getSongList(disstid) {
-  const url = debug ? '/api/getSongList' : 'https://yunsay.github.io/tadpole-music/api/getSongList'
-  const data = Object.assign({}, commonParams, {
-    disstid,
-    type: 1,
-    json: 1,
-    format: 'json',
-    utf8: 1,
-    onlysong: 0,
-    loginUin: 0,
-    platform: 'yqq',
-    hostUin: 0,
-    needNewCode: 0,
-    notice: 0
-  })
 
-  return axios.get(url, {
-    params: data
-  }).then((res) => {
-    return Promise.resolve(res.data)
+export function getDiscList() {
+  const url = 'https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg'
+  const data = Object.assign({}, commonParams, {
+    format: 'jsonp',
+    tpl: 'v12',
+    page: 'other',
+    rnd: 0,
+    g_tk: 1522598183238,
+    loginUin: 0,
+    hostUin: 0,
+    inCharset: 'utf8',
+    outCharset: 'GB2312',
+    notice: 0,
+    platform: 'yqq',
+    needNewCode: 0
   })
+  return jsonp(url, data, options)
+}
+
+export function getSongList(disstid) {
+  return axios.get('https://bird.ioliu.cn/v2/?url=https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg', {
+    params: {
+      disstid,
+      type: 1,
+      json: 1,
+      format: 'json',
+      utf8: 1,
+      onlysong: 0,
+      loginUin: 0,
+      platform: 'yqq',
+      hostUin: 0,
+      needNewCode: 0,
+      notice: 0,
+      headers: {
+        referer: 'https://y.qq.com/',
+        host: 'c.y.qq.com'
+      }
+    }
+  }).then((response) => {
+    return Promise.resolve(response.data)
+  })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
